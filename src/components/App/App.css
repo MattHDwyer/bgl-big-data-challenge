@@ -1,0 +1,27 @@
+.dashboard__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin: 16px 0 0 0;
+}
+
+.content__link {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.link__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 48px;
+}
