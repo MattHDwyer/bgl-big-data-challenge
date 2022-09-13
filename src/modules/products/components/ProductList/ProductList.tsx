@@ -25,7 +25,7 @@ export const ProductList = ({}: ProductListProps) => {
       {products
         ? products.map((product) => {
             return (
-              <Link href={`/products/${product.id}`}>
+              <Link key={product.id} href={`/products/${product.id}`}>
                 <Card className="product__card">
                   {product.name} ({product.code})
                 </Card>

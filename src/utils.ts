@@ -2,11 +2,11 @@ import uniqid from 'uniqid';
 import { Product } from './modules/products/types';
 import { ProductInput } from './modules/products/types';
 
-export const idOne: string = uniqid();
-export const idTwo: string = uniqid();
-export const idThree: string = uniqid();
+export const idOne: string = '1';
+export const idTwo: string = '2';
+export const idThree: string = '3';
 
-export let products: Product[] = [
+let products: Product[] = [
   {
     id: idOne,
     code: 'CE',
@@ -38,28 +38,37 @@ const getProducts = () =>
 export const useGetProducts = async () => {
   try {
     const result: Awaited<Promise<Product[]>> = await getProducts();
-    console.log(result);
     return result;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const createProduct = (data: ProductInput) => {
-  new Promise((resolve, reject) => {
+const createProduct = (data: ProductInput) =>
+  new Promise<boolean>((resolve, reject) => {
     if (!data.code || !data.name || !data.price) {
       reject(new Error('Missing information'));
     }
 
-    const id = uniqid();
-    const newProduct = {
+    const id = (products.length + 1).toString();
+
+    const newProduct: Product = {
       id,
       ...data,
     };
 
     products = [...products, newProduct];
+
     resolve(true);
   });
+
+export const useCreateProduct = async (data: ProductInput) => {
+  try {
+    const result = await createProduct(data);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const getProduct = (id: string) =>
@@ -77,8 +86,6 @@ const getProduct = (id: string) =>
 export const useGetSingleProduct = async (id: string) => {
   try {
     const result = await getProduct(id);
-    console.log(result);
-    console.log(products);
     return result;
   } catch (error) {
     console.error(error);
@@ -107,11 +114,9 @@ const updateProduct = (id: string, data: ProductInput) =>
 export const useUpdateProduct = async (id: string, data: ProductInput) => {
   try {
     const result = await updateProduct(id, data);
-    console.log(result);
-    console.log(products);
     return result;
   } catch (error) {
-    console.error('error');
+    console.error(error);
   }
 };
 
@@ -137,8 +142,6 @@ const deleteProduct = (id: string) =>
 export const useDeleteProduct = async (id: string) => {
   try {
     const result = await deleteProduct(id);
-    console.log(result);
-    console.log(products);
     return result;
   } catch (error) {
     console.error(error);
