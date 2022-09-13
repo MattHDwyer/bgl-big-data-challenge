@@ -6,6 +6,7 @@ import { App as Dashboard } from './components';
 import { ProductPage } from './modules/products/pages';
 import { OrderPage } from './modules/orders/pages';
 import { Link } from '@mui/material';
+import { routes } from './routes';
 
 function App() {
   return (
@@ -26,9 +27,18 @@ function App() {
       </header>
       <div className="app__container">
         <Routes>
+          {routes.map((route, i) => {
+            return (
+              <Route
+                key={i}
+                path={route.path}
+                element={<route.component childRoutes={route.childRoutes} />}
+              />
+            );
+          })}
           <Route path="/" element={<Dashboard />} />
-          <Route path="/products" element={<ProductPage />} />
-          <Route path="/orders" element={<OrderPage />} />
+          {/* <Route path="/products" element={<ProductPage />} />
+          <Route path="/orders" element={<OrderPage />} /> */}
         </Routes>
       </div>
     </div>
