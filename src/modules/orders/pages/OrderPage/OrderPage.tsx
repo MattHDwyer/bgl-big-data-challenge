@@ -7,6 +7,7 @@ import { useGetProducts } from '../../../products/utils';
 import { OrderForm } from '../../components';
 import { CustomerOrderInput, PackagingOptions } from '../../types';
 import { useGetPackagingOptions } from '../../utils';
+import { onSubmit } from './utils';
 
 export interface OrderPageProps {}
 
@@ -51,12 +52,6 @@ export const OrderPage = ({}: OrderPageProps) => {
       <div>505 Server Error: No Packaging Options or Products provided</div>
     );
   }
-
-  const onSubmit: SubmitHandler<CustomerOrderInput[]> = (
-    input: CustomerOrderInput[],
-  ) => {
-    console.log(input);
-  };
 
   const productFormMarkup = [];
   for (let i = 0; i < numProductsInOrder; i++) {

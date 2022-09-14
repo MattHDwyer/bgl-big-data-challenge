@@ -19,3 +19,15 @@ export type CustomerOrderInput = {
   productCode: string;
   amount: number;
 };
+
+export type CustomerOrderCalculation = {
+  id: string;
+  productCode: string;
+  packages: CustomerOrderPackages[];
+};
+
+export interface CustomerOrderPackages {
+  amount: number;
+  numberOfItems: number;
+  price: number;
+}
