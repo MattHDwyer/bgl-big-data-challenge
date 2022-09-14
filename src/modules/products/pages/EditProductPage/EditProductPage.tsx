@@ -44,7 +44,6 @@ export const EditProductPage = ({}: EditProductPageProps) => {
   }, [product]);
 
   const onSubmit: SubmitHandler<ProductInput> = async (input: ProductInput) => {
-    console.log('HIT');
     if (!product) {
       throw new Error('Uh oh! No Product was provided...');
     }

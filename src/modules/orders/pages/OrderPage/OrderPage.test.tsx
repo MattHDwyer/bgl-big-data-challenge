@@ -209,8 +209,6 @@ it('should return 2 packages of 5 items for Cheese', () => {
 
   const result1 = onSubmit(mockOrder1);
 
-  console.log(result1);
-
   const expected1: CustomerOrderCalculation[] = [
     {
       id: '0',

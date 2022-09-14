@@ -1,10 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { App as Dashboard } from './components';
-import { ProductPage } from './modules/products/pages';
-import { OrderPage } from './modules/orders/pages';
 import { Link } from '@mui/material';
 import { routes } from './routes';
 
@@ -37,8 +34,6 @@ function App() {
             );
           })}
           <Route path="/" element={<Dashboard />} />
-          {/* <Route path="/products" element={<ProductPage />} />
-          <Route path="/orders" element={<OrderPage />} /> */}
         </Routes>
       </div>
     </div>
