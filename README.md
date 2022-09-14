@@ -1,5 +1,11 @@
 # BGL Bigdata Team: Coding Challenge:
 
+## Installation:
+
+Clone git repo and then `npm i --force` to install necessary NPM packages (`--force` is necessary due to issues with the ts-jest and jest libraries.
+
+Next run `npm start` to start the web app.
+
 ## Available Scripts
 
 ### `npm start`
@@ -45,7 +51,7 @@ These are the steps I took to develop the web app.
    - Amount
    - Price
 
-### Part - Ordering
+### Part 3 - Ordering
 
 5. Processing the order:
    1. Will have a form on the page, that asks for:\
