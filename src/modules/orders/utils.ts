@@ -34,3 +34,21 @@ const packagingOptions: PackagingOptions[] = [
     ],
   },
 ];
+
+const getPackagingOptions = () =>
+  new Promise<PackagingOptions[]>((resolve, reject) => {
+    if (!packagingOptions) {
+      return reject(new Error('Packaging Options not found!'));
+    }
+    resolve(Object.values(packagingOptions));
+  });
+
+export const useGetPackagingOptions = async () => {
+  try {
+    const result: Awaited<Promise<PackagingOptions[]>> =
+      await getPackagingOptions();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};

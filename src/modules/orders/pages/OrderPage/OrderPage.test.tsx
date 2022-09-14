@@ -1,4 +1,5 @@
 import { PackagingOptions } from '../../types';
+import { useGetPackagingOptions } from '../../utils';
 
 it('should return an array of the default packaging options for Cheese and Ham', async () => {
   const result = await useGetPackagingOptions();
