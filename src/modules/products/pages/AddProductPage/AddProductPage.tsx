@@ -23,7 +23,7 @@ export const AddProductPage = ({}: AddProductPageProps) => {
     register,
     reset,
     handleSubmit,
-    formState: { isDirty, isSubmitSuccessful },
+    formState: { isDirty },
   } = methods;
 
   const onSubmit: SubmitHandler<ProductInput> = async (input: ProductInput) => {

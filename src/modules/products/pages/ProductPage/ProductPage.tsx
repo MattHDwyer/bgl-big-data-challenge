@@ -11,12 +11,6 @@ export interface ProductPageProps {
 }
 
 export const ProductPage = ({ childRoutes = [] }: ProductPageProps) => {
-  const result = useGetProducts();
-
-  useEffect(() => {
-    console.log(result.then((value) => console.log(value)));
-  }, [result]);
-
   return (
     <div className="product-page__container">
       <ProductList />
