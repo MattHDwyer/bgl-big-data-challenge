@@ -7,7 +7,7 @@ import {
   useCreateProduct,
   useUpdateProduct,
   useGetSingleProduct,
-} from './utils';
+} from '../../utils';
 
 it('should return an array of default products (Cheese, Ham, Soy Sauce)', async () => {
   const result = await useGetProducts();

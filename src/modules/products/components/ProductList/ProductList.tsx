@@ -1,6 +1,7 @@
 import { Card, Link } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import { useGetProducts } from '../../../../utils';
+import { MoneyText } from '../../../../components/MoneyText';
+import { useGetProducts } from '../../utils';
 import { Product } from '../../types';
 
 import './ProductList.css';
@@ -8,7 +9,7 @@ import './ProductList.css';
 export interface ProductListProps {}
 
 export const ProductList = ({}: ProductListProps) => {
-  const [products, setProducts] = useState<Product[] | undefined>([]);
+  const [products, setProducts] = useState<Product[] | undefined>(undefined);
   const result = useGetProducts();
 
   useEffect(() => {
@@ -17,17 +18,26 @@ export const ProductList = ({}: ProductListProps) => {
 
   return (
     <div className="product-list__container">
-      <Link href="/products/add">
-        <Card className="product__card product__card--centered">
+      <Link href="/products/add" underline={'hover'}>
+        <Card className="product__card product__card__add-product">
           Add New Product
         </Card>
       </Link>
       {products
         ? products.map((product) => {
             return (
-              <Link key={product.id} href={`/products/${product.id}`}>
+              <Link
+                key={product.id}
+                href={`/products/${product.id}`}
+                underline={'hover'}
+              >
                 <Card className="product__card">
-                  {product.name} ({product.code})
+                  <span>
+                    {product.name} ({product.code})
+                  </span>
+                  <span>
+                    <MoneyText value={product.price} />
+                  </span>
                 </Card>
               </Link>
             );

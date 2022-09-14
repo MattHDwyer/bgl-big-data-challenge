@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Frame } from '../../../../components';
 import { RouteType } from '../../../../types';
-import { useGetProducts } from '../../../../utils';
+import { useGetProducts } from '../../utils';
 import { ProductList } from '../../components';
 
 import './ProductPage.css';
