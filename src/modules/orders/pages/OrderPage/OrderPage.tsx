@@ -1,16 +1,10 @@
-import {
-  Button,
-  Card,
-  paperClasses,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Button, Card, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { Frame } from '../../../../components';
 import { Product } from '../../../products/types';
 import { useGetProducts } from '../../../products/utils';
-import { OrderForm } from '../../components';
+import { ProductOrderField } from '../../components';
 import {
   CustomerOrderCalculation,
   CustomerOrderInput,
@@ -18,6 +12,8 @@ import {
   PackagingOptions,
 } from '../../types';
 import { useGetPackagingOptions } from '../../utils';
+
+import './OrderPage.css';
 
 export interface OrderPageProps {}
 
@@ -36,10 +32,6 @@ export const OrderPage = ({}: OrderPageProps) => {
   const packingOptionsResult = useGetPackagingOptions();
 
   const productsResult = useGetProducts();
-
-  useEffect(() => {
-    console.log(customerOrderCalc);
-  }, [customerOrderCalc]);
 
   useEffect(() => {
     packingOptionsResult.then((value) => setPackagingOptions(value));
@@ -71,8 +63,12 @@ export const OrderPage = ({}: OrderPageProps) => {
   }
 
   const productFormMarkup = [];
+
+  // Render a Product Field for the Order Form
   for (let i = 0; i < numProductsInOrder; i++) {
-    productFormMarkup.push(<OrderForm key={i} fieldSetName={i.toString()} />);
+    productFormMarkup.push(
+      <ProductOrderField key={i} fieldSetName={i.toString()} />,
+    );
   }
 
   const onSubmit = (
@@ -158,54 +154,61 @@ export const OrderPage = ({}: OrderPageProps) => {
 
   return (
     <Frame>
-      <Typography>OrderPage</Typography>
-      <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {productFormMarkup}
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setNumProductsInOrder(numProductsInOrder + 1);
-            }}
-          >
-            Add Another Product
-          </Button>
-          <Button disabled={!isDirty} type={'submit'}>
-            Submit
-          </Button>
-        </form>
-      </FormProvider>
-      {customerOrderCalc
-        ? customerOrderCalc.map((customerOrder, index) => {
-            const product = products.find(
-              (product) => product.code === customerOrder.productCode,
-            );
-            let customerOrderPriceTotal = 0;
-            customerOrder.packages.forEach((pack) => {
-              customerOrderPriceTotal = customerOrderPriceTotal + pack.price;
-            });
-            let customerOrderAmountTotal = 0;
-            customerOrder.packages.forEach((pack) => {
-              customerOrderAmountTotal =
-                customerOrderAmountTotal + pack.numberOfItems;
-            });
-            if (!product) {
-              return <div>Whoops</div>;
-            }
-            return (
-              <Card>
-                {customerOrder.productCode} - {customerOrderPriceTotal}
-                {customerOrder.packages.map((pack) => {
-                  return (
-                    <div>
-                      {`${pack.numberOfPackages} package of ${pack.numberOfItems} items (${product.price} each)`}
-                    </div>
-                  );
-                })}
-              </Card>
-            );
-          })
-        : null}
+      <div className="order-page__container">
+        <Typography component={'h2'}>Create Order</Typography>
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="order__form">
+            {productFormMarkup}
+            <div className="order__button-wrapper">
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setNumProductsInOrder(numProductsInOrder + 1);
+                }}
+              >
+                Add Another Product
+              </Button>
+              <Button disabled={!isDirty} type={'submit'}>
+                Submit
+              </Button>
+            </div>
+          </form>
+        </FormProvider>
+        {customerOrderCalc
+          ? customerOrderCalc.map((customerOrder, index) => {
+              const product = products.find(
+                (product) => product.code === customerOrder.productCode,
+              );
+              let customerOrderPriceTotal = 0;
+              customerOrder.packages.forEach((pack) => {
+                customerOrderPriceTotal = customerOrderPriceTotal + pack.price;
+              });
+              let customerOrderAmountTotal = 0;
+              customerOrder.packages.forEach((pack) => {
+                customerOrderAmountTotal =
+                  customerOrderAmountTotal + pack.numberOfItems;
+              });
+              if (!product) {
+                return <div>Whoops</div>;
+              }
+              return (
+                <Card className="order-summary__card">
+                  <Typography component={'h4'}>
+                    {customerOrder.productCode} -{' '}
+                    {parseFloat(customerOrderPriceTotal.toString()).toFixed(2)}
+                  </Typography>
+                  {customerOrder.packages.map((pack) => {
+                    return (
+                      <div>
+                        {`${pack.numberOfPackages} package of ${pack.numberOfItems} items (${product.price} each)`}
+                      </div>
+                    );
+                  })}
+                </Card>
+              );
+            })
+          : null}
+      </div>
     </Frame>
   );
 };

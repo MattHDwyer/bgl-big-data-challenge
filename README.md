@@ -59,3 +59,12 @@ These are the steps I took to develop the web app.
       - Amount
    2. Will return a result that shows\
       - the number of packages at each packaging option
+
+## Expansion:
+
+If I was going to continue to develop the app, I would address:
+
+1. Error Handling - I would look at better error handling so that the app doesn't crash if you input an incorrect value.
+2. Form Validation - I would include more form validation, using the Yup library
+3. Utilise Local Storage - I would store the values in local storage, so that when you create/update/delete a product, you can still play around with the web app (without effecting the tests).
+4. Orders Autofill - I would prompt users to select a barcode that's autofilled, to assist with input errors

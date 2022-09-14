@@ -1,0 +1,19 @@
+.order-page__container {
+  width: fit-content;
+}
+
+.order__form {
+  width: fit-content;
+}
+
+.order-summary__card {
+  width: 100%;
+  padding: 8px;
+  margin: 16px 8px;
+}
+
+.order__button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
