@@ -40,7 +40,7 @@ These are the steps I took to develop the web app.
 
 4. Create packing orders data mock API.
    1. View\
-      dData included:
+      Data included:
    - Product Code
    - Amount
    - Price
