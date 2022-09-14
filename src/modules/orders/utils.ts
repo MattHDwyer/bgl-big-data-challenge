@@ -6,12 +6,16 @@ const packagingOptions: PackagingOptions[] = [
     productCode: 'CE',
     packagingOptions: [
       {
+        amount: 5,
+        price: 20.95,
+      },
+      {
         amount: 3,
         price: 14.495,
       },
       {
-        amount: 5,
-        price: 20.95,
+        amount: 1,
+        price: 5.95,
       },
     ],
   },
@@ -20,16 +24,20 @@ const packagingOptions: PackagingOptions[] = [
     productCode: 'HM',
     packagingOptions: [
       {
-        amount: 2,
-        price: 13.95,
+        amount: 8,
+        price: 40.95,
       },
       {
         amount: 5,
         price: 29.95,
       },
       {
-        amount: 8,
-        price: 40.95,
+        amount: 2,
+        price: 13.95,
+      },
+      {
+        amount: 1,
+        price: 7.95,
       },
     ],
   },

@@ -27,7 +27,7 @@ export type CustomerOrderCalculation = {
 };
 
 export interface CustomerOrderPackages {
-  amount: number;
+  numberOfPackages: number;
   numberOfItems: number;
   price: number;
 }
