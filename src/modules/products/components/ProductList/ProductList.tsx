@@ -14,7 +14,7 @@ export const ProductList = ({}: ProductListProps) => {
 
   useEffect(() => {
     result.then((value) => setProducts(value));
-  }, []);
+  }, [result]);
 
   return (
     <div className="product-list__container">
