@@ -1,9 +1,0 @@
-.add-product__form {
-  margin: 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-.add-product__textfield {
-  margin: 8px 0 !important;
-}

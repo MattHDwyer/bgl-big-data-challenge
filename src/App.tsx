@@ -10,15 +10,9 @@ function App() {
     <div className="App">
       <header className="header__container">
         <nav className="nav__container">
-          <div className="nav__logo">BGL</div>
+          <div className="nav__logo">ABHT Competitions</div>
           <Link href="/" underline="hover" className="nav__link">
             Home
-          </Link>
-          <Link href="/products" underline="hover" className="nav__link">
-            Products
-          </Link>
-          <Link href="/orders" underline="hover" className="nav__link">
-            Orders
           </Link>
         </nav>
       </header>
